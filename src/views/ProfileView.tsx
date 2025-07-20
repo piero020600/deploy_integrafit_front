@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useQueryClient, useMutation } from '@tanstack/react-query'
-import { toast } from 'sonner'
+import { toast } from 'sonner'
 import ErrorMessage from '../components/ErrorMessage'
 import { ProfileForm, User } from '../types'
 import { updateProfile, uploadImage } from '../api/DevTreeAPI'
@@ -55,22 +55,39 @@ export default function ProfileView() {
 
     return (
         <form
-            className="bg-white p-10 rounded-lg space-y-5"
+            className="p-10 rounded-lg space-y-5"
+            style={{ backgroundColor: '#3A6D50' }}
             onSubmit={handleSubmit(handleUserProfileForm)}
         >
-            <legend className="text-2xl text-slate-800 text-center">Editar Información</legend>
+            {/* FORMULARIO: #3A6D50 (verde medio) */}
+            
+            <legend 
+                className="text-2xl text-center"
+                style={{ color: '#FEF8E8' }}
+            >
+                Editar Información
+            </legend>
+            {/* TÍTULO: #FEF8E8 (beige claro) sobre fondo verde */}
+            
             <div className="grid grid-cols-1 gap-2">
                 <label
                     htmlFor="handle"
-                >Handle:</label>
+                    className="text-white"
+                >
+                    Handle:
+                </label>
+                {/* LABELS: Texto blanco sobre fondo verde */}
+                
                 <input
                     type="text"
-                    className="border-none bg-slate-100 rounded-lg p-2"
+                    className="border-none rounded-lg p-2"
+                    style={{ backgroundColor: '#FAF4E8' }}
                     placeholder="handle o Nombre de Usuario"
                     {...register('handle', {
                         required: "El Nombre de Usuario es obligatorio"
                     })}
                 />
+                {/* INPUTS: #FAF4E8 (beige claro) */}
 
                 {errors.handle && <ErrorMessage>{errors.handle.message}</ErrorMessage>}
             </div>
@@ -78,9 +95,13 @@ export default function ProfileView() {
             <div className="grid grid-cols-1 gap-2">
                 <label
                     htmlFor="description"
-                >Descripción:</label>
+                    className="text-white"
+                >
+                    Descripción:
+                </label>
                 <textarea
-                    className="border-none bg-slate-100 rounded-lg p-2"
+                    className="border-none rounded-lg p-2"
+                    style={{ backgroundColor: '#FAF4E8' }}
                     placeholder="Tu Descripción"
                     {...register('description', {
                         required: "La Descripción es obligatoria"
@@ -93,12 +114,16 @@ export default function ProfileView() {
             <div className="grid grid-cols-1 gap-2">
                 <label
                     htmlFor="image"
-                >Imagen:</label>
+                    className="text-white"
+                >
+                    Imagen:
+                </label>
                 <input
                     id="image"
                     type="file"
                     name="image"
-                    className="border-none bg-slate-100 rounded-lg p-2"
+                    className="border-none rounded-lg p-2"
+                    style={{ backgroundColor: '#FAF4E8' }}
                     accept="image/*"
                     onChange={handleChange}
                 />
@@ -106,9 +131,11 @@ export default function ProfileView() {
 
             <input
                 type="submit"
-                className="bg-cyan-400 p-2 text-lg w-full uppercase text-slate-600 rounded-lg font-bold cursor-pointer"
+                className="p-2 text-lg w-full uppercase text-white rounded-lg font-bold cursor-pointer"
+                style={{ backgroundColor: '#D28F2C' }}
                 value='Guardar Cambios'
             />
+            {/* BOTÓN: #D28F2C (dorado) con texto blanco */}
         </form>
     )
 }
